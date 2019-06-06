@@ -19,6 +19,8 @@ function love.load()
     scoreFont = love.graphics.newFont('font.ttf', 32)
     love.graphics.setFont(smallFont)
 
+    love.window.setTitle('Pong 2.0')
+
     push:setupScreen(VIRTUAL_WIDTH,VIRTUAL_HEIGHT, WINDOW_WIDTH,WINDOW_HEIGHT,{
         fullscreen = false,
         resizable = false,
@@ -93,6 +95,13 @@ function love.draw()
     player1:render()
     player2:render()
     ball:render()
+    displayFPS()
 
     push:apply('end')
+end
+
+function displayFPS()
+    love.graphics.setFont(smallFont)
+    love.graphics.setColor(0,255,0,255)
+    love.graphics.print('FPS: '..tostring(love.timer.getFPS()),10, 10)
 end
