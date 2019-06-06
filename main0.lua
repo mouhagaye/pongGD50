@@ -49,19 +49,17 @@ end
 function love.draw()
     push:apply('start')
 
-    love.graphics.clear(40, 45, 52, 255)
-
     love.graphics.setFont(smallFont)
-    love.graphics.printf('Hello Pong!', 0, 20, VIRTUAL_WIDTH, 'center')
+    love.graphics.clear(40, 42, 52, 255)
+    love.graphics.printf('Hello pong',0, 6, VIRTUAL_WIDTH,'center')
 
     love.graphics.setFont(scoreFont)
-    
-    love.graphics.print(tostring(player1Score), VIRTUAL_WIDTH/2-50 , VIRTUAL_HEIGHT/3)
-    love.graphics.print(tostring(player1Score), VIRTUAL_WIDTH/2+30 , VIRTUAL_HEIGHT/3)
+
+    love.graphics.print(toString(player1Score),VIRTUAL_WIDTH / 2 - 50 , VIRTUAL_HEIGHT / 3)
+    --love.graphics.print(toString(player2Score),VIRTUAL_WIDTH / 2 + 50 , VIRTUAL_HEIGHT / 3)
 
     love.graphics.rectangle('fill', 10, player1Y, 5, 20)
-    love.graphics.rectangle('fill', VIRTUAL_WIDTH - 10, player2Y, 5, 20)
-    love.graphics.rectangle('fill', VIRTUAL_WIDTH / 2 - 2, VIRTUAL_HEIGHT / 2 - 2, 4, 4)
-
+    love.graphics.rectangle('fill',VIRTUAL_WIDTH - 10, player2Y, 5, 20)
+    love.graphics.rectangle('fill',VIRTUAL_WIDTH/2 - 2,VIRTUAL_HEIGHT/2 -2, 5,5)
     push:apply('end')
 end
