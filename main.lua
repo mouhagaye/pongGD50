@@ -38,6 +38,11 @@ function love.load()
     
 
     gameState = 'start'
+    sounds = {
+        ['paddle_hit'] = love.audio.newSource('sounds/paddle_hit.wav', 'static'),
+        ['score'] = love.audio.newSource('sounds/score.wav', 'static') ,
+        ['wall_hit'] = love.audio.newSource('sounds/wall_hit.wav', 'static') 
+    }
 end
 
 function love.keypressed(key)
@@ -74,6 +79,7 @@ function love.update(dt)
 
 
     if ball.x > VIRTUAL_WIDTH then
+        sounds.score:play()
         player1Score= player1Score + 1
         playerServe = 1
         if player1Score == 10 then
@@ -85,6 +91,7 @@ function love.update(dt)
         ball:reset()
     end
     if ball.x < 0 then
+        sounds.score:play()
         playerServe = 2
         player2Score = player2Score + 1
         if player2Score == 10 then
@@ -107,6 +114,7 @@ function love.update(dt)
     elseif gameState == 'play' then
 
         if ball:collides(player1) then
+            sounds.paddle_hit:play()
             ball.dx = -ball.dx*1.03
             ball.x = player1.x + 5
             if ball.dy < 0 then
@@ -116,6 +124,7 @@ function love.update(dt)
             end
         end
         if ball:collides(player2) then
+            sounds.paddle_hit:play()
             ball.dx = -ball.dx*1.03
             ball.x = player2.x - 4
             if ball.dy < 0 then
@@ -127,10 +136,12 @@ function love.update(dt)
     end
 
     if ball.y <= 0 then
+        sounds.wall_hit:play()
         ball.y = 4
         ball.dy = -ball.dy*1.02
     end
     if ball.y >= VIRTUAL_HEIGHT then
+        sounds.wall_hit:play()
         ball.y = VIRTUAL_HEIGHT - 4
         ball.dy = -ball.dy*1.04
     end
